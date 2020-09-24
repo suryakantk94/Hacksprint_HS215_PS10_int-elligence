@@ -1,5 +1,5 @@
 import 'package:pockett/animation/FadeAnimation.dart';
-
+import 'package:pockett/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:pockett/screens/register.dart';
 import 'package:toast/toast.dart';
@@ -172,11 +172,11 @@ class _LoginState extends State<Login> {
                               onPressed: () {
                                 if (userController.text != "" &&
                                     passwordController.text != "") {
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //       builder: (context) => HomePage(),
-                                  //     ));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => HomePage(),
+                                      ));
                                 } else {
                                   Toast.show(
                                     "Please enter details",
