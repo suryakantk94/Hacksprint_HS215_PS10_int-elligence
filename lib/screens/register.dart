@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:pockett/widget/ExpenseWidgets.dart';
 import 'package:pockett/screens/login.dart';
 import 'package:toast/toast.dart';
+import 'User.dart';
+import 'database-manager.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -14,6 +16,20 @@ class _RegisterState extends State<Register> {
   TextEditingController passController = TextEditingController();
   TextEditingController conpassController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  handleRegistrationSuccess() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Login(),
+        ));
+    Toast.show(
+      "Account registered successfully",
+      context,
+      duration: Toast.LENGTH_LONG,
+      gravity: Toast.BOTTOM,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -198,21 +214,26 @@ class _RegisterState extends State<Register> {
                                         body: "Passwords doesn't Match!!",
                                         yesButText: "Ok");
                                   } else {
-                                    // ExpenseWidgets.regularDialogue(context,
-                                    //     title: "Successful",
-                                    //     body: "Registration Successful!!",
-                                    //     yesButText: "Ok");
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => Login(),
-                                        ));
-                                    Toast.show(
-                                      "Account Registered Successfully",
-                                      context,
-                                      duration: Toast.LENGTH_LONG,
-                                      gravity: Toast.BOTTOM,
-                                    );
+                                    Future<dynamic> registerFuture =
+                                        DBManager.db.registerUser(new User(
+                                      nameController.text,
+                                      passController.text,
+                                      phoneController.text,
+                                    ));
+                                    registerFuture
+                                        .then((data) =>
+                                            {handleRegistrationSuccess()})
+                                        .catchError((err) => {
+                                              Toast.show(
+                                                "Account registration failed",
+                                                context,
+                                                duration: Toast.LENGTH_LONG,
+                                                gravity: Toast.BOTTOM,
+                                              )
+                                            });
+
+                                    // Areeba TODO: Remove this
+                                    handleRegistrationSuccess();
                                   }
                                 }
                                 // nameController.text = "";

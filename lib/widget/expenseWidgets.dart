@@ -69,6 +69,7 @@ class ExpenseWidgets {
                 keyboardType: TextInputType.number,
                 maxLines: 1,
                 autofocus: true,
+                style: TextStyle(fontSize: 50, color: Colors.blue[900]),
                 decoration: InputDecoration(
                     hintText: "Amount",
                     hintStyle: TextStyle(color: Colors.lightBlueAccent[100]),
@@ -90,7 +91,7 @@ class ExpenseWidgets {
                 child: Text(
                   yesButText,
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: 20.0,
                     color: Theme.of(context).accentColor,
                   ),
                 ),
