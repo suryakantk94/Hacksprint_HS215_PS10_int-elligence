@@ -1,0 +1,25 @@
+{
+    "type": "mysql",
+    "host": "db4free.net",
+    "port": 3306,
+    "username": "intelligence",
+    "password": "Intelligence@123",
+    "database": "pockett",
+    "synchronize": true,
+    "logging": false,
+    "connectTimeout": 40000,
+    "entities": [
+        "server-src/entity/**/*.ts"
+    ],
+    "migrations": [
+        "server-src/migration/**/*.ts"
+    ],
+    "subscribers": [
+        "server-src/subscriber/**/*.ts"
+    ],
+    "cli": {
+        "entitiesDir": "server-src/entity",
+        "migrationsDir": "server-src/migration",
+        "subscribersDir": "server-src/subscriber"
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "name": "expense-tracker",
+    "version": "0.0.1",
+    "description": "Awesome project developed with TypeORM.",
+    "devDependencies": {},
+    "dependencies": {
+        "@types/node": "^8.0.29",
+        "body-parser": "^1.18.1",
+        "express": "^4.15.4",
+        "mysql": "^2.14.1",
+        "nodemon": "^2.0.4",
+        "reflect-metadata": "^0.1.10",
+        "ts-node": "3.3.0",
+        "typeorm": "0.2.26",
+        "typescript": "3.3.3333"
+    },
+    "scripts": {
+        "start": "nodemon",
+        "build": "tsc"
+    }
+}
