@@ -33,6 +33,9 @@ dependencies:
   animated_splash_screen: ^1.0.1
   responsive_framework: ^0.0.8
   simple_animations: ^2.2.2
+  flutter_datetime_picker: ^1.4.0
+  datetime_picker_formfield: ^1.0.0
+  intl: ^0.16.1
 
 flutter_icons:
   image_path: "assets/images/Pockett.png"
