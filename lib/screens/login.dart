@@ -3,6 +3,8 @@ import 'package:pockett/animation/FadeAnimation.dart';
 import 'package:flutter/material.dart';
 import 'package:pockett/screens/register.dart';
 import 'package:toast/toast.dart';
+import 'User.dart';
+import 'database-manager.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -13,6 +15,7 @@ class _LoginState extends State<Login> {
   bool hidePassword = true;
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -213,10 +216,33 @@ class _LoginState extends State<Login> {
                                       new BorderRadius.circular(30.0)),
                               color: Colors.blue[500],
                               onPressed: () {
+                                Future<dynamic> loginFuture = DBManager.db
+                                    .loginUser(new User.login(
+                                        userController.text,
+                                        passwordController.text));
+                                loginFuture
+                                    .then((data) => {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Register(),
+                                              ))
+                                        })
+                                    .catchError((err) => {
+                                          Toast.show(
+                                            "Account login failed",
+                                            context,
+                                            duration: Toast.LENGTH_LONG,
+                                            gravity: Toast.BOTTOM,
+                                          )
+                                        });
+                                // Areeba TODO: Remove this
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => Register(),
+                                      builder: (context) =>
+                                          Register(),
                                     ));
                               },
                               child: Text(
