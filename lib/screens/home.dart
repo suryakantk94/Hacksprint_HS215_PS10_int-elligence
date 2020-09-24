@@ -3,7 +3,7 @@ import 'package:pockett/screens/login.dart';
 import 'package:pockett/widget/expenseWidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:pockett/screens/tabItem.dart';
-//import 'package:pockett/screens/savings.dart';
+import 'package:pockett/screens/savings.dart';
 import 'package:pockett/screens/addExpense.dart';
 
 class HomePage extends StatefulWidget {
@@ -268,11 +268,11 @@ class HomePageState extends State<HomePage> {
                                   child: RaisedButton(
                                       color: Colors.blue[900],
                                       onPressed: () {
-                                        // Navigator.push(
-                                        //     context,
-                                        //     MaterialPageRoute(
-                                        //       builder: (context) => Savings(),
-                                        //     ));
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => Savings(),
+                                            ));
                                       },
                                       child: Text(
                                         "Add Savings", //add savings button

@@ -1,21 +1,15 @@
 import 'package:pockett/animation/FadeAnimation.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
-import 'package:intl/intl.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
-class AddExpense extends StatefulWidget {
+class Savings extends StatefulWidget {
   @override
-  _AddExpenseState createState() => _AddExpenseState();
+  _SavingsState createState() => _SavingsState();
 }
 
-class _AddExpenseState extends State<AddExpense> {
+class _SavingsState extends State<Savings> {
   TextEditingController noteController = TextEditingController();
   TextEditingController amountController = TextEditingController();
-  var dueDate = TextEditingController(text: "");
-  int dueDateTimestamp;
-  final dateFormat = DateFormat('dd-MM-yyyy');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +35,7 @@ class _AddExpenseState extends State<AddExpense> {
                   FadeAnimation(
                       1,
                       Text(
-                        "Add Expenses",
+                        "Savings",
                         style: TextStyle(color: Colors.white, fontSize: 40),
                       )),
                   SizedBox(
@@ -50,7 +44,7 @@ class _AddExpenseState extends State<AddExpense> {
                   FadeAnimation(
                       1.3,
                       Text(
-                        "Add your spends",
+                        "Add your savings",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       )),
                 ],
@@ -73,23 +67,22 @@ class _AddExpenseState extends State<AddExpense> {
                           height: 60,
                         ),
                         FadeAnimation(
-                            1.5,
+                            1.4,
                             Column(
                               children: <Widget>[
                                 TextField(
                                   controller: noteController,
-                                  style: TextStyle(
-                                      fontSize: 20, color: Colors.blue[900]),
                                   decoration: InputDecoration(
-                                    labelText:
-                                        "Where did you spent?(eg: Coffee)",
+                                    labelText: "Saving for (eg: birthday)",
+                                    icon: Icon(
+                                      Icons.monetization_on,
+                                      color: Colors.blue[900],
+                                    ),
                                     labelStyle:
                                         TextStyle(color: Colors.blue[900]),
-                                    hintText: "Spent on",
+                                    hintText: "Saving for",
                                     hintStyle:
                                         TextStyle(color: Colors.blue[400]),
-                                    // icon: Icon(Icons.library_books_sharp,
-                                    //     color: Colors.blue[900]),
                                   ),
                                 ),
                                 SizedBox(
@@ -98,17 +91,17 @@ class _AddExpenseState extends State<AddExpense> {
                                 TextField(
                                   keyboardType: TextInputType.number,
                                   controller: amountController,
-                                  style: TextStyle(
-                                      fontSize: 20, color: Colors.blue[900]),
                                   decoration: InputDecoration(
+                                    icon: Icon(
+                                      Icons.account_balance_wallet,
+                                      color: Colors.blue[900],
+                                    ),
                                     labelText: "Amount",
                                     labelStyle:
                                         TextStyle(color: Colors.blue[900]),
                                     hintText: "Amount",
                                     hintStyle:
                                         TextStyle(color: Colors.blue[400]),
-                                    icon: Icon(Icons.account_balance_wallet,
-                                        color: Colors.blue[900]),
                                   ),
                                 ),
                               ],
@@ -116,49 +109,11 @@ class _AddExpenseState extends State<AddExpense> {
                         SizedBox(
                           height: 40,
                         ),
-                        FadeAnimation(
-                          1.7,
-                          DateTimeField(
-                            style: TextStyle(
-                                fontSize: 20, color: Colors.blue[500]),
-                            controller: dueDate,
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(4)),
-                                borderSide: BorderSide(
-                                    width: 1, color: Colors.blueAccent),
-                              ),
-                              //errorText: bdErr ? "Please Choose Birth Date" : null,
-                              labelText: 'Select Date',
-                              labelStyle: TextStyle(color: Colors.blue[900]),
-                            ),
-                            format: dateFormat,
-                            onShowPicker: (context, currentValue) {
-                              return DatePicker.showDatePicker(
-                                context,
-                                showTitleActions: true,
-                                theme: DatePickerTheme(
-                                  itemStyle: TextStyle(
-                                    color: Colors.blue[900],
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                  ),
-                                  doneStyle: TextStyle(
-                                    color: Colors.blue[900],
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              );
-                            },
-                            onChanged: (value) {},
-                          ),
-                        ),
                         SizedBox(
                           height: 40,
                         ),
                         FadeAnimation(
-                          1.9,
+                          1.8,
                           Container(
                             height: 50,
                             width: double.infinity,
@@ -174,14 +129,14 @@ class _AddExpenseState extends State<AddExpense> {
                               onPressed: () {
                                 Navigator.pop(context);
                                 Toast.show(
-                                  "Expense Added",
+                                  "Savings Added",
                                   context,
                                   duration: Toast.LENGTH_LONG,
                                   gravity: Toast.BOTTOM,
                                 );
                               },
                               child: Text(
-                                "Add Expense",
+                                "Add Savings",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
