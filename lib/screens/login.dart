@@ -3,9 +3,11 @@ import 'package:pockett/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:pockett/screens/register.dart';
 import 'package:toast/toast.dart';
+import 'dart:convert';
 import 'User.dart';
 import 'database-manager.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'globaldata.dart' as Globals;
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
@@ -15,7 +17,17 @@ class _LoginState extends State<Login> {
   bool hidePassword = true;
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  handleLoginSuccess(dynamic jsonString) {
+    Globals.loggedInUser = User.fromJson(jsonDecode(jsonString));
 
+    //DBManager.db.addUsernameToSF(data.username);
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+              HomePage(),
+        ));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -182,12 +194,7 @@ class _LoginState extends State<Login> {
                                       passwordController.text));
                                   loginFuture
                                       .then((data) => {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              HomePage(),
-                                        ))
+                                    handleLoginSuccess(data)
                                   })
                                       .catchError((err) => {
                                     Toast.show(

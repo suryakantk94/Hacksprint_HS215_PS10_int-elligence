@@ -36,6 +36,8 @@ dependencies:
   flutter_datetime_picker: ^1.4.0
   datetime_picker_formfield: ^1.0.0
   intl: ^0.16.1
+  shared_preferences: ^0.5.12
+  convert: ^2.1.1
 
 flutter_icons:
   image_path: "assets/images/Pockett.png"

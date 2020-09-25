@@ -77,6 +77,7 @@ class HomePageState extends State<HomePage> {
                             ExpenseWidgets.fieldDialogue(
                               context,
                               title: "Enter Monthly Income",
+
                             );
                           },
                         )),
@@ -94,7 +95,8 @@ class HomePageState extends State<HomePage> {
                           onTap: () {
                             ExpenseWidgets.fieldDialogue(
                               context,
-                              title: "Enter Daily Expense Limit",
+                              title: "Enter Daily Expense Limit"
+
                             );
                           },
                         )),

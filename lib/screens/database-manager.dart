@@ -2,7 +2,8 @@ import 'package:http/http.dart' as http;
 import 'dart:io';
 import 'dart:convert';
 import 'dart:async';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import '../screens/globaldata.dart' as Globals;
 import 'User.dart';
 
 class DBManager {
@@ -25,6 +26,9 @@ class DBManager {
     switch (response.statusCode) {
       case 200:
         return response.body.toString();
+      case 204:
+
+        return "";
       case 400:
         throw BadRequestException(response.body.toString());
       case 401:
@@ -86,38 +90,85 @@ class DBManager {
     return responseJson;
   }
 
-  Future<dynamic> setMonthlyIncome(int i) async {
-    print("Calling login user");
+  Future<dynamic> setMonthlyIncome(double i) async {
+    print("Calling set monthly income ");
+
     var responseJson;
+    // String url = baseUsersUrl + "/" + Globals.loggedInUser.id;
+    //print(url);
     try {
-      final response = await http.post(baseLoginUrl,
+      final response = await http.put(
+          "https://pure-reaches-26058.herokuapp.com/users/5f6d8043295b9a23cc293527",
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
-          body: jsonEncode(<String, int>{"monthlyIncome": i}));
+          body: jsonEncode(<String, dynamic>{"monthlyIncome": i}));
 
       responseJson = _response(response);
     } on SocketException {
       throw FetchDataException('No Internet connection');
     }
     return responseJson;
+
   }
 
-  Future<dynamic> setDailyLimit(int i) async {
-    print("Calling login user");
+
+  Future<dynamic> setDailyLimit(double i) async {
+    print("Calling daily limit ");
+
     var responseJson;
+    // String url = baseUsersUrl + "/" + Globals.loggedInUser.id;
+    //print(url);
     try {
-      final response = await http.post(baseLoginUrl,
+      final response = await http.put(
+          "https://pure-reaches-26058.herokuapp.com/users/5f6d8043295b9a23cc293527",
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
-          body: jsonEncode(<String, int>{"dailyLimit": i}));
+          body: jsonEncode(<String, dynamic>{"dailyLimit": i}));
 
       responseJson = _response(response);
     } on SocketException {
       throw FetchDataException('No Internet connection');
     }
     return responseJson;
+
+  }
+
+  addUsernameToSF(String s) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('Username', s);
+  }
+
+  addUserIdToSF(String s) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('UserId', s);
+  }
+
+  getUsernameSF() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String stringValue = prefs.getString("Username");
+    return stringValue;
+  }
+
+  getUserIdSF() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String stringValue = prefs.getString("UserId");
+    return stringValue;
+  }
+
+  removeValues() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Remove String
+    prefs.remove("stringValue");
+    //Remove bool
+    prefs.remove("boolValue");
+    //Remove int
+    prefs.remove("intValue");
+    //Remove double
+    prefs.remove("doubleValue");
   }
 }
 

@@ -98,9 +98,13 @@ class ExpenseWidgets {
                   ),
                 ),
                 onPressed: () {
-                  Future<dynamic> loginFuture =
-                      DBManager.db.setMonthlyIncome(10000);
-                  loginFuture
+                  Future<void> updateFuture = null;
+                  if (title == "Enter Monthly Income") {
+                    updateFuture = DBManager.db.setMonthlyIncome(80000);
+                  } else {
+                    updateFuture = DBManager.db.setDailyLimit(80000);
+                  }
+                  updateFuture
                       .then((data) => {Navigator.of(context).pop(true)})
                       .catchError((err) => {
                             // Areeba: TODO: Handle error
@@ -111,9 +115,6 @@ class ExpenseWidgets {
                       gravity: Toast.BOTTOM,
                     )*/
                           });
-
-                  // Areeba: TODO: Remove this
-                  Navigator.of(context).pop(true);
                 },
               ),
             ],
