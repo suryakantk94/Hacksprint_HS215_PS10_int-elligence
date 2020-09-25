@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+//import '../screens/User.dart';
+import '../screens/database-manager.dart';
 
 class ExpenseWidgets {
   static Future<bool> regularDialogue(context,
@@ -96,6 +98,21 @@ class ExpenseWidgets {
                   ),
                 ),
                 onPressed: () {
+                  Future<dynamic> loginFuture =
+                      DBManager.db.setMonthlyIncome(10000);
+                  loginFuture
+                      .then((data) => {Navigator.of(context).pop(true)})
+                      .catchError((err) => {
+                            // Areeba: TODO: Handle error
+                            /*Toast.show(
+                      "Account login failed",
+                      context,
+                      duration: Toast.LENGTH_LONG,
+                      gravity: Toast.BOTTOM,
+                    )*/
+                          });
+
+                  // Areeba: TODO: Remove this
                   Navigator.of(context).pop(true);
                 },
               ),

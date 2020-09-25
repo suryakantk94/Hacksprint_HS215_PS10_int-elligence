@@ -8,9 +8,10 @@ import 'User.dart';
 class DBManager {
   DBManager._();
 
-  String baseUrl = "https://obscure-springs-93376.herokuapp.com";
-  String baseUsersUrl = "https://obscure-springs-93376.herokuapp.com/users";
-  String baseLoginUrl = "https://obscure-springs-93376.herokuapp.com/login";
+  String baseUrl = "https://pure-reaches-26058.herokuapp.com";
+  String baseUsersUrl = "https://pure-reaches-26058.herokuapp.com/users";
+  String baseLoginUrl = "https://pure-reaches-26058.herokuapp.com/login";
+
 /*
   String baseUrl = "http://localhost:3000";
   String baseUsersUrl = "http://localhost:3000/users";
@@ -49,8 +50,7 @@ class DBManager {
 
     var responseJson;
     try {
-      final response = await http.post(
-          baseUsersUrl,
+      final response = await http.post(baseUsersUrl,
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
@@ -58,7 +58,6 @@ class DBManager {
             "username": u.username,
             "password": u.password,
             "phoneNumber": u.phoneNumber
-
           }));
       responseJson = _response(response);
     } on SocketException {
@@ -71,13 +70,48 @@ class DBManager {
     print("Calling login user");
     var responseJson;
     try {
-      final response = await http.post(
-          baseLoginUrl,
+      final response = await http.post(baseLoginUrl,
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
-          body: jsonEncode(
-              <String, String>{"username": u.username, "password": u.password}));
+          body: jsonEncode(<String, String>{
+            "username": u.username,
+            "password": u.password
+          }));
+
+      responseJson = _response(response);
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
+  Future<dynamic> setMonthlyIncome(int i) async {
+    print("Calling login user");
+    var responseJson;
+    try {
+      final response = await http.post(baseLoginUrl,
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, int>{"monthlyIncome": i}));
+
+      responseJson = _response(response);
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
+  Future<dynamic> setDailyLimit(int i) async {
+    print("Calling login user");
+    var responseJson;
+    try {
+      final response = await http.post(baseLoginUrl,
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, int>{"dailyLimit": i}));
 
       responseJson = _response(response);
     } on SocketException {

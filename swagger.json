@@ -1,0 +1,155 @@
+{
+    "basePath": "/",
+    "consumes": [
+        "application/json"
+    ],
+    "definitions": {
+        "IUser": {
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "_id",
+                "username",
+                "password"
+            ],
+            "type": "object"
+        }
+    },
+    "info": {
+        "title": "user-server",
+        "version": "1.0.0",
+        "license": {
+            "name": "ISC"
+        }
+    },
+    "paths": {
+        "/user": {
+            "get": {
+                "operationId": "GetAll",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/IUser"
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "parameters": []
+            },
+            "post": {
+                "operationId": "Create",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                },
+                "security": [],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "schema": {
+                        "properties": {
+                            "description": {
+                                "type": "string"
+                            }
+                        },
+                        "title": "CreateBody",
+                        "type": "object",
+                        "required": [
+                            "description"
+                        ]
+                    }
+                }]
+            }
+        },
+        "/user/{id}": {
+            "put": {
+                "operationId": "Update",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                },
+                "security": [],
+                "parameters": [{
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "properties": {
+                                "username": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                },
+                                "phoneNumber": {
+                                    "type": "string"
+                                }
+                            },
+                            "title": "UpdateBody",
+                            "type": "object",
+                            "required": [
+                                "username",
+                                "password"
+                            ]
+                        }
+                    }
+                ]
+            },
+            "delete": {
+                "operationId": "Remove",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                },
+                "security": [],
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "type": "string"
+                }]
+            }
+        }
+    },
+    "produces": [
+        "application/json"
+    ],
+    "swagger": "2.0",
+    "securityDefinitions": {}
+}

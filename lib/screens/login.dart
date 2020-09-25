@@ -175,11 +175,28 @@ class _LoginState extends State<Login> {
                               onPressed: () {
                                 if (userController.text != "" &&
                                     passwordController.text != "") {
-                                  Navigator.push(
+
+                                  Future<dynamic> loginFuture = DBManager.db
+                                      .loginUser(new User.login(
+                                      userController.text,
+                                      passwordController.text));
+                                  loginFuture
+                                      .then((data) => {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              HomePage(),
+                                        ))
+                                  })
+                                      .catchError((err) => {
+                                    Toast.show(
+                                      "Account login failed",
                                       context,
-                                      MaterialPageRoute(
-                                        builder: (context) => HomePage(),
-                                      ));
+                                      duration: Toast.LENGTH_LONG,
+                                      gravity: Toast.BOTTOM,
+                                    )
+                                  });
                                 } else {
                                   Toast.show(
                                     "Please enter details",
@@ -216,28 +233,8 @@ class _LoginState extends State<Login> {
                                       new BorderRadius.circular(30.0)),
                               color: Colors.blue[500],
                               onPressed: () {
-                                Future<dynamic> loginFuture = DBManager.db
-                                    .loginUser(new User.login(
-                                        userController.text,
-                                        passwordController.text));
-                                loginFuture
-                                    .then((data) => {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    Register(),
-                                              ))
-                                        })
-                                    .catchError((err) => {
-                                          Toast.show(
-                                            "Account login failed",
-                                            context,
-                                            duration: Toast.LENGTH_LONG,
-                                            gravity: Toast.BOTTOM,
-                                          )
-                                        });
-                                // Areeba TODO: Remove this
+
+
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
