@@ -1,3 +1,4 @@
+import 'package:pockett/screens/calendar.dart';
 import 'package:pockett/screens/dashboard.dart';
 import 'package:pockett/screens/login.dart';
 import 'package:pockett/screens/reports.dart';
@@ -67,12 +68,13 @@ class HomePageState extends State<HomePage> {
             isSelected: selectedPosition == 1,
             onTap: () {
               setState(() {
+                currentScreen = Calendar();
                 selectedPosition = 1;
               });
             },
           ),
           SizedBox(
-            width: 48,
+            width: 30,
           ),
           TabItem(
             text: tabs[2],
@@ -85,6 +87,9 @@ class HomePageState extends State<HomePage> {
               });
             },
           ),
+          SizedBox(
+            width: 3,
+          ),
           TabItem(
             text: tabs[3],
             icon: Icons.power_settings_new,
@@ -96,44 +101,11 @@ class HomePageState extends State<HomePage> {
               showAlertDialog(context);
             },
           ),
+          SizedBox(
+            width: 1,
+          ),
         ],
       ),
     );
   }
-}
-
-//logout alert box
-showAlertDialog(BuildContext context) {
-  // Create button
-  Widget okButton = FlatButton(
-    child: Text("Yes"),
-    onPressed: () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Login(),
-          ));
-    },
-  );
-
-  // Create AlertDialog
-  AlertDialog alert = AlertDialog(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-    title: Text(
-      "Logout??",
-      style: TextStyle(color: Colors.red),
-    ),
-    content: Text("Are you sure you want to logout?"),
-    actions: [
-      okButton,
-    ],
-  );
-
-  // show the dialog
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
 }

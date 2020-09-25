@@ -28,10 +28,7 @@ class _IncExpDataState extends State<IncExpData> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(
-                height: 60,
-              ),
-              SizedBox(
-                height: 20,
+                height: 45,
               ),
               FadeAnimation(
                 1,

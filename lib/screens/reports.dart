@@ -64,8 +64,7 @@ class _ReportsState extends State<Reports> with SingleTickerProviderStateMixin {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(60),
                             topRight: Radius.circular(60))),
-                    child: SingleChildScrollView(
-                        child: Column(children: <Widget>[
+                    child: Column(children: <Widget>[
                       Container(
                         child: new TabBar(
                           labelColor: Colors.lightBlue,
@@ -86,18 +85,20 @@ class _ReportsState extends State<Reports> with SingleTickerProviderStateMixin {
                           ],
                         ),
                       ),
-                      Container(
-                          height: 500,
-                          width: 400,
-                          child: TabBarView(
-                            controller: _controller,
-                            children: <Widget>[
-                              incdata(),
-                              expdata(),
-                              incexpdata()
-                            ],
-                          )),
-                    ]))))
+                      SingleChildScrollView(
+                        child: Container(
+                            height: 400,
+                            width: 400,
+                            child: TabBarView(
+                              controller: _controller,
+                              children: <Widget>[
+                                incdata(),
+                                expdata(),
+                                incexpdata()
+                              ],
+                            )),
+                      ),
+                    ])))
           ]),
     ));
   }
