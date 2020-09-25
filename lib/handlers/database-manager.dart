@@ -152,7 +152,7 @@ class DBManager {
           body: jsonEncode(<String, double>{"monthlyIncome": i}));
 
       responseJson = _response(response);
-      updateLoggedInUserCache();
+      //updateLoggedInUserCache();
     } on SocketException {
       throw FetchDataException('No Internet connection');
     }
@@ -172,13 +172,32 @@ class DBManager {
           body: jsonEncode(<String, dynamic>{"dailyLimit": i}));
 
       responseJson = _response(response);
-      updateLoggedInUserCache();
+      //updateLoggedInUserCache();
     } on SocketException {
       throw FetchDataException('No Internet connection');
     }
     return responseJson;
   }
 
+  Future<void> addSavings(double i) async {
+    print("Calling add savings");
+
+    var responseJson;
+    String url = baseUsersUrl + "/" + Globals.loggedInUser.id;
+    try {
+      final response = await http.put(url,
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, double>{"savings": i}));
+
+      responseJson = _response(response);
+      updateLoggedInUserCache();
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
   addUsernameToSF(String s) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('Username', s);

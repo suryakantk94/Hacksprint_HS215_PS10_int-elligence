@@ -1,7 +1,7 @@
 import 'package:pockett/animation/FadeAnimation.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
-
+import '../handlers/database-manager.dart';
 class Savings extends StatefulWidget {
   @override
   _SavingsState createState() => _SavingsState();
@@ -10,6 +10,15 @@ class Savings extends StatefulWidget {
 class _SavingsState extends State<Savings> {
   TextEditingController noteController = TextEditingController();
   TextEditingController amountController = TextEditingController();
+  handleAddSuccess() {
+    Navigator.pop(context);
+    Toast.show(
+      "Savings Added",
+      context,
+      duration: Toast.LENGTH_LONG,
+      gravity: Toast.BOTTOM,
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,13 +136,19 @@ class _SavingsState extends State<Savings> {
                                       new BorderRadius.circular(30.0)),
                               color: Colors.blue[900],
                               onPressed: () {
-                                Navigator.pop(context);
-                                Toast.show(
-                                  "Savings Added",
-                                  context,
-                                  duration: Toast.LENGTH_LONG,
-                                  gravity: Toast.BOTTOM,
-                                );
+                                Future<dynamic> addFuture = DBManager.db
+                                    .addSavings(double.parse(amountController.text));
+                                addFuture
+                                    .then(
+                                        (data) => {handleAddSuccess()})
+                                    .catchError((err) => {
+                                  Toast.show(
+                                    "Add savings failed",
+                                    context,
+                                    duration: Toast.LENGTH_LONG,
+                                    gravity: Toast.BOTTOM,
+                                  )
+                                });
                               },
                               child: Text(
                                 "Add Savings",

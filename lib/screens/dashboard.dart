@@ -280,7 +280,7 @@ class DashboardState extends State<Dashboard> {
                                         padding: EdgeInsets.all(0),
                                         decoration: BoxDecoration(),
                                         child: Text(
-                                          "  {total savings}", //print total savings here
+                                          Globals.loggedInUser.savings.toString(), //print total savings here
                                           style: TextStyle(
                                               fontSize: 20,
                                               color: Colors.blue[900]),

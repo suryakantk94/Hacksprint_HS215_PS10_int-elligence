@@ -1,6 +1,6 @@
 class User {
   String username, password, phoneNumber, id;
-  double monthlyIncome, dailyLimit;
+  double monthlyIncome, dailyLimit, savings;
   User(String u, String p, String n) {
     username = u;
     password = p;
@@ -17,7 +17,8 @@ class User {
       this.username,
       this.monthlyIncome,
       this.dailyLimit,
-      this.phoneNumber});
+        this.savings,
+      this.phoneNumber });
 
   factory User.fromJson(Map<String, dynamic> json) => _userFromJson(json);
 }
@@ -29,6 +30,7 @@ User _userFromJson(Map<String, dynamic> json) {
       username: json['username'] as String,
       monthlyIncome: json['monthlyIncome'].toDouble(),
       dailyLimit: json['dailyLimit'].toDouble(),
+      savings: json['dailyLimit'].toDouble(),
       phoneNumber: json['phoneNumber'] as String,
 
      );
