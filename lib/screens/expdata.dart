@@ -28,11 +28,7 @@ class _ExpenseDataState extends State<ExpenseData> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(
-<<<<<<< HEAD
                 height: 45,
-=======
-                height: 10,
->>>>>>> d2e5b9508017f9c161e30897ed5b4d55ad27cce7
               ),
               FadeAnimation(
                 1,

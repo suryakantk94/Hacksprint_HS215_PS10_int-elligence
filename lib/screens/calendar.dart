@@ -242,6 +242,7 @@ class _CalendarState extends State<Calendar> {
 
   _showAddDialog() async {
     await showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (context) => AlertDialog(
               title: Text("New Expense"),
