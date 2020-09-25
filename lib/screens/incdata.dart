@@ -31,11 +31,8 @@ class _IncomeDataState extends State<IncomeData> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(
-
                 height: 45,
-
               ),
-              
               FadeAnimation(
                 1,
                 Container(
@@ -78,7 +75,8 @@ class _IncomeDataState extends State<IncomeData> {
                                       Container(
                                           padding: EdgeInsets.all(10),
                                           decoration: BoxDecoration(),
-                                          child: Icon(Icons.graphic_eq)),
+                                          child: Icon(Icons.insert_chart,
+                                              color: Colors.blue[900])),
                                       Container(
                                           padding: EdgeInsets.all(10),
                                           decoration: BoxDecoration(),
@@ -146,7 +144,8 @@ class _IncomeDataState extends State<IncomeData> {
                                       Container(
                                           padding: EdgeInsets.all(10),
                                           decoration: BoxDecoration(),
-                                          child: Icon(Icons.graphic_eq)),
+                                          child: Icon(Icons.pie_chart,
+                                              color: Colors.blue[900])),
                                       Container(
                                           padding: EdgeInsets.all(10),
                                           decoration: BoxDecoration(),
@@ -206,7 +205,10 @@ class _IncomeDataState extends State<IncomeData> {
                                     Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(),
-                                        child: Icon(Icons.stacked_line_chart, color: Colors.blue[900],)),
+                                        child: Icon(
+                                          Icons.stacked_line_chart,
+                                          color: Colors.blue[900],
+                                        )),
                                     Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(),

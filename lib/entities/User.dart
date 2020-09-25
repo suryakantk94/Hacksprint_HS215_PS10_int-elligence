@@ -30,7 +30,7 @@ User _userFromJson(Map<String, dynamic> json) {
       username: json['username'] as String,
       monthlyIncome: json['monthlyIncome'].toDouble(),
       dailyLimit: json['dailyLimit'].toDouble(),
-      savings: json['dailyLimit'].toDouble(),
+      savings: json['saving'].toDouble(),
       phoneNumber: json['phoneNumber'] as String,
 
      );

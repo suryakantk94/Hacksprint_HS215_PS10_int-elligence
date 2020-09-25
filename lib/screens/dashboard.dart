@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:pockett/screens/savings.dart';
 //import 'package:expense_manger/screens/home.dart';
 import '../entities/GlobalData.dart' as Globals;
+
 class Dashboard extends StatefulWidget {
   @override
   DashboardState createState() => DashboardState();
@@ -160,12 +161,11 @@ class DashboardState extends State<Dashboard> {
                                               color: Colors.blue[900]),
                                         )),
                                     Container(
-
                                         padding: EdgeInsets.all(0),
-
                                         decoration: BoxDecoration(),
                                         child: Text(
-                                          Globals.loggedInUser.monthlyIncome.toString(), //print monthly income here
+                                          Globals.loggedInUser.monthlyIncome
+                                              .toString(), //print monthly income here
                                           style: TextStyle(
                                               fontSize: 20,
                                               color: Colors.blue[900]),
@@ -204,22 +204,17 @@ class DashboardState extends State<Dashboard> {
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(),
                                         child: Text(
-
-
-
                                           "Daily Limit       :",
-
                                           style: TextStyle(
                                               fontSize: 20,
-                                              color: Colors.blue[900]), 
+                                              color: Colors.blue[900]),
                                         )),
                                     Container(
-
                                         padding: EdgeInsets.all(0),
-
                                         decoration: BoxDecoration(),
                                         child: Text(
-                                          Globals.loggedInUser.dailyLimit.toString(), //print daily limit here
+                                          Globals.loggedInUser.dailyLimit
+                                              .toString(), //print daily limit here
                                           style: TextStyle(
                                               fontSize: 20,
                                               color: Colors.blue[900]),
@@ -280,7 +275,8 @@ class DashboardState extends State<Dashboard> {
                                         padding: EdgeInsets.all(0),
                                         decoration: BoxDecoration(),
                                         child: Text(
-                                          Globals.loggedInUser.savings.toString(), //print total savings here
+                                          Globals.loggedInUser.savings
+                                              .toString(), //print total savings here
                                           style: TextStyle(
                                               fontSize: 20,
                                               color: Colors.blue[900]),

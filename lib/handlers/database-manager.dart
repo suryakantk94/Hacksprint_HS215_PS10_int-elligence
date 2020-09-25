@@ -189,7 +189,7 @@ class DBManager {
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
-          body: jsonEncode(<String, double>{"savings": i}));
+          body: jsonEncode(<String, double>{"saving": i}));
 
       responseJson = _response(response);
       updateLoggedInUserCache();
