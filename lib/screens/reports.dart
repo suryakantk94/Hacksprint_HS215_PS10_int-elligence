@@ -64,40 +64,42 @@ class _ReportsState extends State<Reports> with SingleTickerProviderStateMixin {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(60),
                             topRight: Radius.circular(60))),
-                    child: SingleChildScrollView(
-                        child: Column(children: <Widget>[
+                    child: Column(children: <Widget>[
                       Container(
                         child: new TabBar(
-                          labelColor: Colors.lightBlue,
+                          unselectedLabelColor: Colors.lightBlue,
+                          labelColor: Colors.blue[900],
                           controller: _controller,
                           tabs: [
                             new Tab(
-                              icon: const Icon(Icons.attach_money),
+                              icon: const Icon(Icons.money),
                               text: 'Income',
                             ),
                             new Tab(
-                              icon: const Icon(Icons.assignment),
+                              icon: const Icon(Icons.local_atm_outlined),
                               text: 'Expense',
                             ),
                             new Tab(
-                              icon: const Icon(Icons.view_list),
+                              icon: const Icon(Icons.chrome_reader_mode),
                               text: 'Income-Expense',
                             ),
                           ],
                         ),
                       ),
-                      Container(
-                          height: 500,
-                          width: 400,
-                          child: TabBarView(
-                            controller: _controller,
-                            children: <Widget>[
-                              incdata(),
-                              expdata(),
-                              incexpdata()
-                            ],
-                          )),
-                    ]))))
+                      SingleChildScrollView(
+                        child: Container(
+                            height: 400,
+                            width: 400,
+                            child: TabBarView(
+                              controller: _controller,
+                              children: <Widget>[
+                                incdata(),
+                                expdata(),
+                                incexpdata()
+                              ],
+                            )),
+                      ),
+                    ])))
           ]),
     ));
   }

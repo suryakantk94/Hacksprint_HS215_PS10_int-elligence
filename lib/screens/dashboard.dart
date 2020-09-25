@@ -11,6 +11,32 @@ class Dashboard extends StatefulWidget {
   DashboardState createState() => DashboardState();
 }
 
+class SizeConfig {
+  static MediaQueryData _mediaQueryData;
+  static double screenWidth;
+  static double screenHeight;
+  static double blockSizeHorizontal;
+  static double blockSizeVertical;
+  static double _safeAreaHorizontal;
+  static double _safeAreaVertical;
+  static double safeBlockHorizontal;
+  static double safeBlockVertical;
+
+  void init(BuildContext context) {
+    _mediaQueryData = MediaQuery.of(context);
+    screenWidth = _mediaQueryData.size.width;
+    screenHeight = _mediaQueryData.size.height;
+    blockSizeHorizontal = screenWidth / 100;
+    blockSizeVertical = screenHeight / 100;
+    _safeAreaHorizontal =
+        _mediaQueryData.padding.left + _mediaQueryData.padding.right;
+    _safeAreaVertical =
+        _mediaQueryData.padding.top + _mediaQueryData.padding.bottom;
+    safeBlockHorizontal = (screenWidth - _safeAreaHorizontal) / 100;
+    safeBlockVertical = (screenHeight - _safeAreaVertical) / 100;
+  }
+}
+
 final tabs = ['Dashboard', 'Calendar', 'Reports', 'Logout'];
 
 class DashboardState extends State<Dashboard> {
@@ -20,6 +46,7 @@ class DashboardState extends State<Dashboard> {
   // Widget currentScreen = HomePage();
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(10),
@@ -36,7 +63,7 @@ class DashboardState extends State<Dashboard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(
-                height: 60,
+                height: SizeConfig.safeBlockVertical * 5,
               ),
               Padding(
                 padding: EdgeInsets.all(15),
@@ -95,7 +122,7 @@ class DashboardState extends State<Dashboard> {
               FadeAnimation(
                 1.6,
                 Container(
-                  width: double.infinity,
+                  width: SizeConfig.safeBlockHorizontal * 100,
                   height: 170,
                   decoration: BoxDecoration(
                       color: Colors.lightBlueAccent[100],
@@ -105,7 +132,7 @@ class DashboardState extends State<Dashboard> {
                           bottomLeft: Radius.circular(20),
                           bottomRight: Radius.circular(20))),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(
                         height: 20,
@@ -121,19 +148,23 @@ class DashboardState extends State<Dashboard> {
                               children: [
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(),
                                         child: Text(
-                                          "Monthly Income",
+                                          "Monthly Income :",
                                           style: TextStyle(
                                               fontSize: 20,
                                               color: Colors.blue[900]),
                                         )),
                                     Container(
-                                        padding: EdgeInsets.all(10),
+<<<<<<< HEAD
+                                        padding: EdgeInsets.all(3),
+=======
+                                        padding: EdgeInsets.all(0),
+>>>>>>> d2e5b9508017f9c161e30897ed5b4d55ad27cce7
                                         decoration: BoxDecoration(),
                                         child: Text(
                                           Globals.loggedInUser.monthlyIncome.toString(), //print monthly income here
@@ -145,19 +176,19 @@ class DashboardState extends State<Dashboard> {
                                 ),
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(),
                                         child: Text(
-                                          "Balance Left",
+                                          "Balance Left     :",
                                           style: TextStyle(
                                               fontSize: 20,
                                               color: Colors.blue[900]),
                                         )),
                                     Container(
-                                        padding: EdgeInsets.all(10),
+                                        padding: EdgeInsets.all(0),
                                         decoration: BoxDecoration(),
                                         child: Text(
                                           "       {balance left}", //print balance left here
@@ -169,19 +200,27 @@ class DashboardState extends State<Dashboard> {
                                 ),
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(),
                                         child: Text(
-                                          "Daily Limit",
+<<<<<<< HEAD
+                                          "Daily Limit      :",
+=======
+                                          "Daily Limit       :",
+>>>>>>> d2e5b9508017f9c161e30897ed5b4d55ad27cce7
                                           style: TextStyle(
                                               fontSize: 20,
-                                              color: Colors.blue[900]),
+                                              color: Colors.blue[900]), 
                                         )),
                                     Container(
-                                        padding: EdgeInsets.all(10),
+<<<<<<< HEAD
+                                        padding: EdgeInsets.all(3),
+=======
+                                        padding: EdgeInsets.all(0),
+>>>>>>> d2e5b9508017f9c161e30897ed5b4d55ad27cce7
                                         decoration: BoxDecoration(),
                                         child: Text(
                                           Globals.loggedInUser.dailyLimit.toString(), //print daily limit here
@@ -233,16 +272,16 @@ class DashboardState extends State<Dashboard> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Container(
-                                        padding: EdgeInsets.all(10),
+                                        padding: EdgeInsets.all(8),
                                         decoration: BoxDecoration(),
                                         child: Text(
-                                          "Total Savings",
+                                          "Total Savings   :",
                                           style: TextStyle(
                                               fontSize: 20,
                                               color: Colors.blue[900]),
                                         )),
                                     Container(
-                                        padding: EdgeInsets.all(10),
+                                        padding: EdgeInsets.all(0),
                                         decoration: BoxDecoration(),
                                         child: Text(
                                           "  {total savings}", //print total savings here
@@ -252,24 +291,35 @@ class DashboardState extends State<Dashboard> {
                                         )),
                                   ],
                                 ),
+                                SizedBox(
+                                  height: 20,
+                                ),
                                 Container(
-                                  padding: EdgeInsets.all(20),
+                                  height: 50,
                                   width: double.infinity,
-                                  child: RaisedButton(
-                                      color: Colors.blue[900],
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => Savings(),
-                                            ));
-                                      },
-                                      child: Text(
-                                        "Add Savings", //add savings button
-                                        style: TextStyle(
-                                            color: Colors.lightBlueAccent,
-                                            fontSize: 20),
-                                      )),
+                                  margin: EdgeInsets.symmetric(horizontal: 50),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.blue[900]),
+                                  child: FlatButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            new BorderRadius.circular(30.0)),
+                                    color: Colors.blue[900],
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => Savings(),
+                                          ));
+                                    },
+                                    child: Text(
+                                      "Add Savings",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
@@ -304,7 +354,7 @@ showAlertDialog(BuildContext context) {
   AlertDialog alert = AlertDialog(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
     title: Text(
-      "LOGOUT??",
+      "Logout",
       style: TextStyle(color: Colors.red),
     ),
     content: Text("Do you want to logout?"),
