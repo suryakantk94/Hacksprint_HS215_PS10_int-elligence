@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:pockett/screens/register.dart';
 import 'package:toast/toast.dart';
 import 'dart:convert';
-import 'User.dart';
-import 'database-manager.dart';
+import '../entities/User.dart';
+import '../handlers/database-manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'globaldata.dart' as Globals;
+import '../entities/GlobalData.dart' as Globals;
 
 class Login extends StatefulWidget {
   @override
@@ -19,6 +19,7 @@ class _LoginState extends State<Login> {
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   handleLoginSuccess(dynamic jsonString) {
+
     Globals.loggedInUser = User.fromJson(jsonDecode(jsonString));
 
     //DBManager.db.addUsernameToSF(data.username);

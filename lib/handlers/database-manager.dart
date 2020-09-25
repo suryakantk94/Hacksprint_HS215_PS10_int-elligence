@@ -3,14 +3,16 @@ import 'dart:io';
 import 'dart:convert';
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../screens/globaldata.dart' as Globals;
-import 'User.dart';
+import '../entities/GlobalData.dart' as Globals;
+import '../entities/User.dart';
+import '../entities/Expense.dart';
 
 class DBManager {
   DBManager._();
 
   String baseUrl = "https://pure-reaches-26058.herokuapp.com";
   String baseUsersUrl = "https://pure-reaches-26058.herokuapp.com/users";
+  String baseExpensesUrl = "https://pure-reaches-26058.herokuapp.com/expenses";
   String baseLoginUrl = "https://pure-reaches-26058.herokuapp.com/login";
 
 /*
@@ -27,7 +29,6 @@ class DBManager {
       case 200:
         return response.body.toString();
       case 204:
-
         return "";
       case 400:
         throw BadRequestException(response.body.toString());
@@ -70,6 +71,54 @@ class DBManager {
     return responseJson;
   }
 
+  Future<dynamic> addExpense(Expense e) async {
+    print("Adding expense");
+    String url = baseExpensesUrl;
+    print(url);
+    print(e.where);
+    print(e.amount);
+    print(e.date);
+    String ds = e.date.toIso8601String();
+    print(ds);
+    var responseJson;
+    try {
+      final response = await http.post(url,
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, dynamic>{
+            "userId": Globals.loggedInUser.id,
+            "where": e.where,
+            "amount": e.amount,
+            "date": ds
+          }));
+      responseJson = _response(response);
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
+  Future updateLoggedInUserCache() async {
+    String url = baseUsersUrl + "/" + Globals.loggedInUser.id;
+    print("Updating local cache");
+    print(url);
+    var responseJson;
+    try {
+      final response = await http.get(url);
+      print("from updateLoggedInUserCache");
+      print(response);
+      responseJson = _response(response);
+      var decoded;
+      if (responseJson != "") {
+        //Globals.loggedInUser = User.fromJson(jsonDecode(responseJson));
+      }
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
   Future<dynamic> loginUser(User u) async {
     print("Calling login user");
     var responseJson;
@@ -90,49 +139,44 @@ class DBManager {
     return responseJson;
   }
 
-  Future<dynamic> setMonthlyIncome(double i) async {
+  Future<void> setMonthlyIncome(double i) async {
     print("Calling set monthly income ");
 
     var responseJson;
-    // String url = baseUsersUrl + "/" + Globals.loggedInUser.id;
-    //print(url);
+    String url = baseUsersUrl + "/" + Globals.loggedInUser.id;
     try {
-      final response = await http.put(
-          "https://pure-reaches-26058.herokuapp.com/users/5f6d8043295b9a23cc293527",
+      final response = await http.put(url,
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
-          body: jsonEncode(<String, dynamic>{"monthlyIncome": i}));
+          body: jsonEncode(<String, double>{"monthlyIncome": i}));
 
       responseJson = _response(response);
+      updateLoggedInUserCache();
     } on SocketException {
       throw FetchDataException('No Internet connection');
     }
     return responseJson;
-
   }
 
-
-  Future<dynamic> setDailyLimit(double i) async {
+  Future<void> setDailyLimit(double i) async {
     print("Calling daily limit ");
 
     var responseJson;
-    // String url = baseUsersUrl + "/" + Globals.loggedInUser.id;
-    //print(url);
+    String url = baseUsersUrl + "/" + Globals.loggedInUser.id;
     try {
-      final response = await http.put(
-          "https://pure-reaches-26058.herokuapp.com/users/5f6d8043295b9a23cc293527",
+      final response = await http.put(url,
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
           body: jsonEncode(<String, dynamic>{"dailyLimit": i}));
 
       responseJson = _response(response);
+      updateLoggedInUserCache();
     } on SocketException {
       throw FetchDataException('No Internet connection');
     }
     return responseJson;
-
   }
 
   addUsernameToSF(String s) async {

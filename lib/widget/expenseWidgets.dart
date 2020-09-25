@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 //import '../screens/User.dart';
-import '../screens/database-manager.dart';
+import '../handlers/database-manager.dart';
 
 class ExpenseWidgets {
+
   static Future<bool> regularDialogue(context,
       {String title,
       String body,
@@ -102,10 +103,18 @@ class ExpenseWidgets {
                   ),
                 ),
                 onPressed: () {
-                  Future<dynamic> loginFuture =
-                      DBManager.db.setMonthlyIncome(10000);
-                  loginFuture
-                      .then((data) => {Navigator.of(context).pop(true)})
+                  Future<void> updateFuture;
+                  double value = double.parse(textController.text);
+                  if (title == "Enter Monthly Income") {
+                    updateFuture = DBManager.db.setMonthlyIncome(value);
+                  } else {
+                    updateFuture = DBManager.db.setDailyLimit(value);
+                  }
+
+                  updateFuture
+                      .then((data) => {
+
+                        Navigator.of(context).pop(true)})
                       .catchError((err) => {
                             // Areeba: TODO: Handle error
                             /*Toast.show(
@@ -116,8 +125,7 @@ class ExpenseWidgets {
                     )*/
                           });
 
-                  // Areeba: TODO: Remove this
-                  Navigator.of(context).pop(true);
+
                 },
               ),
             ],

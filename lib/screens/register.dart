@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:pockett/widget/ExpenseWidgets.dart';
 import 'package:pockett/screens/login.dart';
 import 'package:toast/toast.dart';
-import 'User.dart';
-import 'database-manager.dart';
+import '../entities/User.dart';
+import '../handlers/database-manager.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -232,8 +232,7 @@ class _RegisterState extends State<Register> {
                                               )
                                             });
 
-                                    // Areeba TODO: Remove this
-                                    handleRegistrationSuccess();
+
                                   }
                                 }
                                 // nameController.text = "";

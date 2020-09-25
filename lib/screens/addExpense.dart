@@ -4,7 +4,8 @@ import 'package:toast/toast.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
-
+import '../entities/Expense.dart';
+import '../handlers/database-manager.dart';
 class AddExpense extends StatefulWidget {
   @override
   _AddExpenseState createState() => _AddExpenseState();
@@ -14,6 +15,15 @@ class _AddExpenseState extends State<AddExpense> {
   TextEditingController noteController = TextEditingController();
   TextEditingController amountController = TextEditingController();
   TextEditingController dateController = TextEditingController();
+  handleAddExpenseSuccess() {
+    Navigator.pop(context);
+    Toast.show(
+      "Expense Added",
+      context,
+      duration: Toast.LENGTH_LONG,
+      gravity: Toast.BOTTOM,
+    );
+  }
   int dueDateTimestamp;
   final dateFormat = DateFormat('dd-MM-yyyy');
   @override
@@ -172,13 +182,38 @@ class _AddExpenseState extends State<AddExpense> {
                                       new BorderRadius.circular(30.0)),
                               color: Colors.blue[900],
                               onPressed: () {
-                                Navigator.pop(context);
-                                Toast.show(
-                                  "Expense Added",
-                                  context,
-                                  duration: Toast.LENGTH_LONG,
-                                  gravity: Toast.BOTTOM,
-                                );
+
+
+
+                                var date1 = dateFormat.parse(dateController.text);
+
+                                var outputFormat = DateFormat("yyyy-MM-dd");
+                                var date2 = outputFormat.parse("$date1");
+
+
+                                //double amount = double.parse(amountController.text);
+                                Future<dynamic> addExpenseFuture =
+                              DBManager.db.addExpense(new Expense(
+                                  noteController.text,
+                                  double.parse(amountController.text),
+                                date2,
+                                ));
+                                addExpenseFuture
+                                    .then((data) =>
+                                {
+                                  handleAddExpenseSuccess()
+                               })
+                                    .catchError((err) => {
+                                  Toast.show(
+                                    "Expense addition failed",
+                                    context,
+                                    duration: Toast.LENGTH_LONG,
+                                    gravity: Toast.BOTTOM,
+                                  )
+                                });
+
+
+
                               },
                               child: Text(
                                 "Add Expense",
