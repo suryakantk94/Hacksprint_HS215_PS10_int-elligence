@@ -28,7 +28,11 @@ class _ExpenseDataState extends State<ExpenseData> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(
+<<<<<<< HEAD
                 height: 45,
+=======
+                height: 10,
+>>>>>>> d2e5b9508017f9c161e30897ed5b4d55ad27cce7
               ),
               FadeAnimation(
                 1,
@@ -64,7 +68,7 @@ class _ExpenseDataState extends State<ExpenseData> {
                                     Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(),
-                                        child: Icon(Icons.graphic_eq)),
+                                        child: Icon(Icons.insert_chart, color: Colors.blue[900])),
                                     Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(),
@@ -123,7 +127,7 @@ class _ExpenseDataState extends State<ExpenseData> {
                                     Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(),
-                                        child: Icon(Icons.graphic_eq)),
+                                        child: Icon(Icons.pie_chart, color: Colors.blue[900])),
                                     Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(),
@@ -182,7 +186,7 @@ class _ExpenseDataState extends State<ExpenseData> {
                                     Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(),
-                                        child: Icon(Icons.graphic_eq)),
+                                        child: Icon(Icons.stacked_line_chart, color: Colors.blue[900],)),
                                     Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(),

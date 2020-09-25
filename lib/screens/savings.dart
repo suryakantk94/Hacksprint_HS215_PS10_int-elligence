@@ -75,7 +75,7 @@ class _SavingsState extends State<Savings> {
                                   decoration: InputDecoration(
                                     labelText: "Saving for (eg: birthday)",
                                     icon: Icon(
-                                      Icons.monetization_on,
+                                      Icons.menu_book,
                                       color: Colors.blue[900],
                                     ),
                                     labelStyle:

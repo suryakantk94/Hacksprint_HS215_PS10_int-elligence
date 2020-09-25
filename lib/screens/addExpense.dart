@@ -88,8 +88,8 @@ class _AddExpenseState extends State<AddExpense> {
                                     hintText: "Spent on",
                                     hintStyle:
                                         TextStyle(color: Colors.blue[400]),
-                                    // icon: Icon(Icons.library_books_sharp,
-                                    //     color: Colors.blue[900]),
+                                    icon: Icon(Icons.library_books_sharp,
+                                        color: Colors.blue[900]),
                                   ),
                                 ),
                                 SizedBox(

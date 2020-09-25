@@ -31,8 +31,13 @@ class _IncomeDataState extends State<IncomeData> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(
+<<<<<<< HEAD
                 height: 45,
+=======
+                height: 10,
+>>>>>>> d2e5b9508017f9c161e30897ed5b4d55ad27cce7
               ),
+              
               FadeAnimation(
                 1,
                 Container(
@@ -53,6 +58,7 @@ class _IncomeDataState extends State<IncomeData> {
                       ),
                       FadeAnimation(
                           1.2,
+<<<<<<< HEAD
                           InkWell(
                             onTap: () {
                               Navigator.push(
@@ -92,6 +98,39 @@ class _IncomeDataState extends State<IncomeData> {
                                   ),
                                 ],
                               ),
+=======
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  //crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(),
+                                        child: Icon(Icons.insert_chart, color: Colors.blue[900])),
+                                        
+                                    Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(),
+                                        child: Text(
+                                          "Income Bar Graph",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.blue[900]),
+                                        )),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                              ],
+>>>>>>> d2e5b9508017f9c161e30897ed5b4d55ad27cce7
                             ),
                           )),
                     ],
@@ -121,6 +160,7 @@ class _IncomeDataState extends State<IncomeData> {
                       ),
                       FadeAnimation(
                           1.5,
+<<<<<<< HEAD
                           InkWell(
                             onTap: () {
 // Navigator.push(
@@ -160,6 +200,38 @@ class _IncomeDataState extends State<IncomeData> {
                                   ),
                                 ],
                               ),
+=======
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  //crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(),
+                                        child: Icon(Icons.pie_chart, color: Colors.blue[900])),
+                                    Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(),
+                                        child: Text(
+                                          "Income Pie Chart",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.blue[900]),
+                                        )),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                              ],
+>>>>>>> d2e5b9508017f9c161e30897ed5b4d55ad27cce7
                             ),
                           )),
                     ],
@@ -203,7 +275,7 @@ class _IncomeDataState extends State<IncomeData> {
                                     Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(),
-                                        child: Icon(Icons.graphic_eq)),
+                                        child: Icon(Icons.stacked_line_chart, color: Colors.blue[900],)),
                                     Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(),

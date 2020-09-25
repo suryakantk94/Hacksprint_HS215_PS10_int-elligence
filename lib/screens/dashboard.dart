@@ -160,7 +160,11 @@ class DashboardState extends State<Dashboard> {
                                               color: Colors.blue[900]),
                                         )),
                                     Container(
+<<<<<<< HEAD
                                         padding: EdgeInsets.all(3),
+=======
+                                        padding: EdgeInsets.all(0),
+>>>>>>> d2e5b9508017f9c161e30897ed5b4d55ad27cce7
                                         decoration: BoxDecoration(),
                                         child: Text(
                                           "{monthly income}", //print monthly income here
@@ -202,13 +206,21 @@ class DashboardState extends State<Dashboard> {
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(),
                                         child: Text(
+<<<<<<< HEAD
                                           "Daily Limit      :",
+=======
+                                          "Daily Limit       :",
+>>>>>>> d2e5b9508017f9c161e30897ed5b4d55ad27cce7
                                           style: TextStyle(
                                               fontSize: 20,
-                                              color: Colors.blue[900]),
+                                              color: Colors.blue[900]), 
                                         )),
                                     Container(
+<<<<<<< HEAD
                                         padding: EdgeInsets.all(3),
+=======
+                                        padding: EdgeInsets.all(0),
+>>>>>>> d2e5b9508017f9c161e30897ed5b4d55ad27cce7
                                         decoration: BoxDecoration(),
                                         child: Text(
                                           "          {daily limit}", //print daily limit here
