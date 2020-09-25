@@ -68,19 +68,20 @@ class _ReportsState extends State<Reports> with SingleTickerProviderStateMixin {
                         child: Column(children: <Widget>[
                       Container(
                         child: new TabBar(
-                          labelColor: Colors.lightBlue,
+                          unselectedLabelColor: Colors.lightBlue,
+                          labelColor: Colors.blue[900],
                           controller: _controller,
                           tabs: [
                             new Tab(
-                              icon: const Icon(Icons.attach_money),
+                              icon: const Icon(Icons.money),
                               text: 'Income',
                             ),
                             new Tab(
-                              icon: const Icon(Icons.assignment),
+                              icon: const Icon(Icons.local_atm_outlined),
                               text: 'Expense',
                             ),
                             new Tab(
-                              icon: const Icon(Icons.view_list),
+                              icon: const Icon(Icons.chrome_reader_mode),
                               text: 'Income-Expense',
                             ),
                           ],
