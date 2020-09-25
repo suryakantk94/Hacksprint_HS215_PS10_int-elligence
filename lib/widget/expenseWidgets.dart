@@ -59,7 +59,10 @@ class ExpenseWidgets {
   }
 
   static Future<bool> fieldDialogue(context,
-      {String title, String body, String yesButText = "Save"}) {
+      {String title,
+      var textController,
+      String body,
+      String yesButText = "Save"}) {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -68,6 +71,7 @@ class ExpenseWidgets {
           elevation: 6,
           child: AlertDialog(
             content: new TextField(
+                controller: textController,
                 keyboardType: TextInputType.number,
                 maxLines: 1,
                 autofocus: true,
@@ -98,13 +102,9 @@ class ExpenseWidgets {
                   ),
                 ),
                 onPressed: () {
-                  Future<void> updateFuture = null;
-                  if (title == "Enter Monthly Income") {
-                    updateFuture = DBManager.db.setMonthlyIncome(80000);
-                  } else {
-                    updateFuture = DBManager.db.setDailyLimit(80000);
-                  }
-                  updateFuture
+                  Future<dynamic> loginFuture =
+                      DBManager.db.setMonthlyIncome(10000);
+                  loginFuture
                       .then((data) => {Navigator.of(context).pop(true)})
                       .catchError((err) => {
                             // Areeba: TODO: Handle error
@@ -115,6 +115,9 @@ class ExpenseWidgets {
                       gravity: Toast.BOTTOM,
                     )*/
                           });
+
+                  // Areeba: TODO: Remove this
+                  Navigator.of(context).pop(true);
                 },
               ),
             ],

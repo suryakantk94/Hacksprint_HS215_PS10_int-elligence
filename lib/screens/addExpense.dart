@@ -13,7 +13,7 @@ class AddExpense extends StatefulWidget {
 class _AddExpenseState extends State<AddExpense> {
   TextEditingController noteController = TextEditingController();
   TextEditingController amountController = TextEditingController();
-  var dueDate = TextEditingController(text: "");
+  TextEditingController dateController = TextEditingController();
   int dueDateTimestamp;
   final dateFormat = DateFormat('dd-MM-yyyy');
   @override
@@ -121,7 +121,7 @@ class _AddExpenseState extends State<AddExpense> {
                           DateTimeField(
                             style: TextStyle(
                                 fontSize: 20, color: Colors.blue[500]),
-                            controller: dueDate,
+                            controller: dateController,
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderRadius:

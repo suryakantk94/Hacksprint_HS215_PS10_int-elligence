@@ -8,6 +8,7 @@ import 'User.dart';
 import 'database-manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'globaldata.dart' as Globals;
+
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
@@ -24,10 +25,10 @@ class _LoginState extends State<Login> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) =>
-              HomePage(),
+          builder: (context) => HomePage(),
         ));
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -161,14 +162,14 @@ class _LoginState extends State<Login> {
                         SizedBox(
                           height: 40,
                         ),
-                        FadeAnimation(
-                            1.5,
-                            Text(
-                              "Forgot Password?",
-                              style: TextStyle(color: Colors.grey),
-                            )),
+                        // FadeAnimation(
+                        //     1.5,
+                        //     Text(
+                        //       "Forgot Password?",
+                        //       style: TextStyle(color: Colors.grey),
+                        //     )),
                         SizedBox(
-                          height: 40,
+                          height: 60,
                         ),
                         FadeAnimation(
                           1.6,
@@ -187,23 +188,21 @@ class _LoginState extends State<Login> {
                               onPressed: () {
                                 if (userController.text != "" &&
                                     passwordController.text != "") {
-
                                   Future<dynamic> loginFuture = DBManager.db
                                       .loginUser(new User.login(
-                                      userController.text,
-                                      passwordController.text));
+                                          userController.text,
+                                          passwordController.text));
                                   loginFuture
-                                      .then((data) => {
-                                    handleLoginSuccess(data)
-                                  })
+                                      .then(
+                                          (data) => {handleLoginSuccess(data)})
                                       .catchError((err) => {
-                                    Toast.show(
-                                      "Account login failed",
-                                      context,
-                                      duration: Toast.LENGTH_LONG,
-                                      gravity: Toast.BOTTOM,
-                                    )
-                                  });
+                                            Toast.show(
+                                              "Account login failed",
+                                              context,
+                                              duration: Toast.LENGTH_LONG,
+                                              gravity: Toast.BOTTOM,
+                                            )
+                                          });
                                 } else {
                                   Toast.show(
                                     "Please enter details",
@@ -240,13 +239,10 @@ class _LoginState extends State<Login> {
                                       new BorderRadius.circular(30.0)),
                               color: Colors.blue[500],
                               onPressed: () {
-
-
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          Register(),
+                                      builder: (context) => Register(),
                                     ));
                               },
                               child: Text(
