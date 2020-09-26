@@ -119,10 +119,13 @@ class DBManager {
       responseJson = _response(response);
       var decoded;
       if (responseJson != "") {
-        Globals.loggedInUser = User.fromJson(jsonDecode(responseJson));
+        var decodedJson = jsonDecode(responseJson);
+        Globals.loggedInUser = User.fromJson(decodedJson);
       }
     } on SocketException {
       throw FetchDataException('No Internet connection');
+    } on Exception {
+      throw Exception("Generic exception");
     }
     return responseJson;
   }
@@ -143,6 +146,8 @@ class DBManager {
       responseJson = _response(response);
     } on SocketException {
       throw FetchDataException('No Internet connection');
+    } on Exception {
+      throw Exception("Generic exception");
     }
     return responseJson;
   }
@@ -160,6 +165,8 @@ class DBManager {
       responseJson = _response(response);
     } on SocketException {
       throw FetchDataException('No Internet connection');
+    } on Exception {
+      throw Exception("Generic exception");
     }
     return responseJson;
   }
@@ -195,6 +202,8 @@ class DBManager {
       updateLoggedInUserCache();
     } on SocketException {
       throw FetchDataException('No Internet connection');
+    } on Exception {
+      throw Exception("Generic exception");
     }
     return responseJson;
   }
@@ -212,9 +221,11 @@ class DBManager {
           body: jsonEncode(<String, dynamic>{"dailyLimit": i}));
 
       responseJson = _response(response);
-      updateLoggedInUserCache();
+      await updateLoggedInUserCache();
     } on SocketException {
       throw FetchDataException('No Internet connection');
+    } on Exception {
+      throw Exception("Generic exception");
     }
     return responseJson;
   }
@@ -235,6 +246,8 @@ class DBManager {
       updateLoggedInUserCache();
     } on SocketException {
       throw FetchDataException('No Internet connection');
+    } on Exception {
+      throw Exception("Generic exception");
     }
     return responseJson;
   }

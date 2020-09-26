@@ -56,7 +56,7 @@ class _ExpensegraphState extends State<Expensegraph> {
   void initState() {
     super.initState();
     timer =
-    new Timer.periodic(new Duration(seconds: 20), (t) => getIncomeData());
+    new Timer.periodic(new Duration(seconds: 2), (t) => getExpenseData());
   }
 
   @override
@@ -73,7 +73,7 @@ class _ExpensegraphState extends State<Expensegraph> {
     });
   }
 
-  getIncomeData() async {
+  getExpenseData() async {
     Future<dynamic> loginFuture = DBManager.db.getExpenses();
     loginFuture
         .then((data) => {handleGetDataSuccess(data)})
