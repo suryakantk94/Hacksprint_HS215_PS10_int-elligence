@@ -3,50 +3,50 @@ import 'package:pockett/animation/FadeAnimation.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:pockett/graphs/barchart.dart';
 import 'package:pockett/graphs/barchart1.dart';
-import 'package:pockett/graphs/piechart.dart';
-import 'package:pockett/graphs/piechart1.dart';
+import 'package:pockett/graphs/linechart.dart';
+import 'package:pockett/graphs/linechart1.dart';
 
-class Expensechart extends StatefulWidget {
+class Expenseline extends StatefulWidget {
   @override
-  _ExpensechartState createState() => _ExpensechartState();
+  _ExpenselineState createState() => _ExpenselineState();
 }
 
-class _ExpensechartState extends State<Expensechart> {
-  final List<IncomeAmt1> data = [
-    IncomeAmt1(
+class _ExpenselineState extends State<Expenseline> {
+  final List<IncomeAmt2> data = [
+    IncomeAmt2(
       date: "30 June",
       amt: 20,
-      pieColor: charts.ColorUtil.fromDartColor(Colors.blue[500]),
+      lineColor: charts.ColorUtil.fromDartColor(Colors.blue[500]),
     ),
-    IncomeAmt1(
+    IncomeAmt2(
       date: "1 July",
       amt: 35,
-      pieColor: charts.ColorUtil.fromDartColor(Colors.red),
+      lineColor: charts.ColorUtil.fromDartColor(Colors.red),
     ),
-    IncomeAmt1(
+    IncomeAmt2(
       date: "2 July",
       amt: 10,
-      pieColor: charts.ColorUtil.fromDartColor(Colors.yellow),
+      lineColor: charts.ColorUtil.fromDartColor(Colors.yellow),
     ),
-    IncomeAmt1(
+    IncomeAmt2(
       date: "3 July",
       amt: 18,
-      pieColor: charts.ColorUtil.fromDartColor(Colors.orange),
+      lineColor: charts.ColorUtil.fromDartColor(Colors.orange),
     ),
-    IncomeAmt1(
+    IncomeAmt2(
       date: "4 July",
       amt: 40,
-      pieColor: charts.ColorUtil.fromDartColor(Colors.green),
+      lineColor: charts.ColorUtil.fromDartColor(Colors.green),
     ),
-    IncomeAmt1(
+    IncomeAmt2(
       date: "5 July",
       amt: 30,
-      pieColor: charts.ColorUtil.fromDartColor(Colors.indigo),
+      lineColor: charts.ColorUtil.fromDartColor(Colors.indigo),
     ),
-    IncomeAmt1(
+    IncomeAmt2(
       date: "6 July",
       amt: 20,
-      pieColor: charts.ColorUtil.fromDartColor(Colors.teal),
+      lineColor: charts.ColorUtil.fromDartColor(Colors.teal),
     ),
   ];
 
@@ -90,7 +90,7 @@ class _ExpensechartState extends State<Expensechart> {
                                 Container(
                                     height: 350,
                                     width: 600,
-                                    child: PieChart1(data: data)),
+                                    child: LineChart1(data: data)),
                               ]),
                         )),
                   ),

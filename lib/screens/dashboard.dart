@@ -180,7 +180,7 @@ class DashboardState extends State<Dashboard> {
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(),
                                         child: Text(
-                                          "Balance Left     :",
+                                          "Balance Left       :",
                                           style: TextStyle(
                                               fontSize: 20,
                                               color: Colors.blue[900]),
@@ -189,7 +189,8 @@ class DashboardState extends State<Dashboard> {
                                         padding: EdgeInsets.all(0),
                                         decoration: BoxDecoration(),
                                         child: Text(
-                                          Globals.balance.toString(), //print balance left here
+                                          Globals.balance
+                                              .toString(), //print balance left here
                                           style: TextStyle(
                                               fontSize: 20,
                                               color: Colors.blue[900]),
@@ -204,7 +205,7 @@ class DashboardState extends State<Dashboard> {
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(),
                                         child: Text(
-                                          "Daily Limit       :",
+                                          "Daily Limit    :",
                                           style: TextStyle(
                                               fontSize: 20,
                                               color: Colors.blue[900]),

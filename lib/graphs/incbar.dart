@@ -4,12 +4,12 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:pockett/graphs/barchart.dart';
 import 'package:pockett/graphs/barchart1.dart';
 
-class Incomegraph extends StatefulWidget {
+class Expensegraph extends StatefulWidget {
   @override
-  _IncomegraphState createState() => _IncomegraphState();
+  _ExpensegraphState createState() => _ExpensegraphState();
 }
 
-class _IncomegraphState extends State<Incomegraph> {
+class _ExpensegraphState extends State<Expensegraph> {
   final List<IncomeAmt> data = [
     IncomeAmt(
       date: "30 June",
@@ -62,69 +62,35 @@ class _IncomegraphState extends State<Incomegraph> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(
-              height: 80,
-            ),
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  FadeAnimation(
-                      1,
-                      Text(
-                        "Income Analysis",
-                        style: TextStyle(color: Colors.white, fontSize: 40),
-                      )),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  FadeAnimation(
-                      1.3,
-                      Text(
-                        "Bar Graph",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      )),
-                ],
-              ),
-            ),
-            SizedBox(height: 20),
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(60),
-                        topRight: Radius.circular(60))),
+                  color: Colors.white,
+                ),
                 child: Padding(
-                  padding: EdgeInsets.all(30),
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: 40,
-                      ),
-                      FadeAnimation(
-                          1.4,
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Color.fromRGBO(20, 17, 237, .4),
-                                      blurRadius: 20,
-                                      offset: Offset(0, 10))
-                                ]),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                      height: 450,
-                                      width: 600,
-                                      child: BarChart1(data: data)),
-                                ]),
-                          )),
-                    ],
+                  padding: EdgeInsets.all(10),
+                  child: SingleChildScrollView(
+                    child: FadeAnimation(
+                        1.4,
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromRGBO(20, 17, 237, .4),
+                                    blurRadius: 20,
+                                    offset: Offset(0, 10))
+                              ]),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                    height: 350,
+                                    width: 600,
+                                    child: BarChart1(data: data)),
+                              ]),
+                        )),
                   ),
                 ),
               ),

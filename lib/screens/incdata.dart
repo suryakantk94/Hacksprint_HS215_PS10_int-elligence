@@ -55,11 +55,11 @@ class _IncomeDataState extends State<IncomeData> {
                           1.2,
                           InkWell(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Incomegraph(),
-                                  ));
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //       builder: (context) => Incomegraph(),
+                              //     ));
                             },
                             child: Container(
                               decoration: BoxDecoration(
