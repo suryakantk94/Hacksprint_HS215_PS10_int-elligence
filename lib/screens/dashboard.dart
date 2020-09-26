@@ -189,7 +189,7 @@ class DashboardState extends State<Dashboard> {
                                         padding: EdgeInsets.all(0),
                                         decoration: BoxDecoration(),
                                         child: Text(
-                                          "       {balance left}", //print balance left here
+                                          Globals.balance.toString(), //print balance left here
                                           style: TextStyle(
                                               fontSize: 20,
                                               color: Colors.blue[900]),
@@ -334,6 +334,7 @@ showAlertDialog(BuildContext context) {
   Widget okButton = FlatButton(
     child: Text("Yes"),
     onPressed: () {
+      Globals.loggedInUser = null;
       Navigator.push(
           context,
           MaterialPageRoute(

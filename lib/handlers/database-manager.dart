@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../entities/GlobalData.dart' as Globals;
 import '../entities/User.dart';
 import '../entities/Expense.dart';
+import '../entities/DateExpense.dart';
 
 class DBManager {
   DBManager._();
@@ -75,9 +76,7 @@ class DBManager {
     print("Adding expense");
     String url = baseExpensesUrl;
     print(url);
-    print(e.where);
-    print(e.amount);
-    print(e.date);
+
     String ds = e.date.toIso8601String();
     print(ds);
     var responseJson;
@@ -93,6 +92,17 @@ class DBManager {
             "date": ds
           }));
       responseJson = _response(response);
+      double oldLimit = Globals.loggedInUser.dailyLimit;
+      print("oldLimit: " + oldLimit.toString());
+      await updateLoggedInUserCache();
+      double newLimit = Globals.loggedInUser.dailyLimit;
+      print("oldLimit: " + newLimit.toString());
+
+      if (newLimit != oldLimit) {
+        return "You have exhausted daily expense quota. To keep your expenses in control, your daily limit has been adjusted to INR " + newLimit.toString();
+      } else {
+        return "";
+      }
     } on SocketException {
       throw FetchDataException('No Internet connection');
     }
@@ -111,7 +121,7 @@ class DBManager {
       responseJson = _response(response);
       var decoded;
       if (responseJson != "") {
-        //Globals.loggedInUser = User.fromJson(jsonDecode(responseJson));
+        Globals.loggedInUser = User.fromJson(jsonDecode(responseJson));
       }
     } on SocketException {
       throw FetchDataException('No Internet connection');
@@ -133,6 +143,34 @@ class DBManager {
           }));
 
       responseJson = _response(response);
+
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
+  Future<dynamic> getBalance() async {
+    print("Getting balance");
+    String url = baseExpensesUrl + "/" + Globals.loggedInUser.id;
+
+    var responseJson;
+    try {
+      final response = await http.get(url,
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          });
+
+      responseJson = _response(response);
+      print(responseJson);
+      var objsJson = jsonDecode(responseJson) as List;
+      print(objsJson);
+      List<DateExpense> expObjs = objsJson.map((dJson) => DateExpense.fromJson(dJson)).toList();
+      print(expObjs);
+      double totalExpense = expObjs.fold(0, (sum, item) => sum + item.total);
+      print("total is: " + totalExpense.toString());
+      Globals.balance = Globals.loggedInUser.monthlyIncome - totalExpense;
+      print(Globals.balance);
     } on SocketException {
       throw FetchDataException('No Internet connection');
     }
@@ -152,7 +190,7 @@ class DBManager {
           body: jsonEncode(<String, double>{"monthlyIncome": i}));
 
       responseJson = _response(response);
-      //updateLoggedInUserCache();
+      updateLoggedInUserCache();
     } on SocketException {
       throw FetchDataException('No Internet connection');
     }
@@ -172,7 +210,7 @@ class DBManager {
           body: jsonEncode(<String, dynamic>{"dailyLimit": i}));
 
       responseJson = _response(response);
-      //updateLoggedInUserCache();
+      updateLoggedInUserCache();
     } on SocketException {
       throw FetchDataException('No Internet connection');
     }

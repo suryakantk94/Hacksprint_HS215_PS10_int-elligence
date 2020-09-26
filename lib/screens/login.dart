@@ -21,7 +21,7 @@ class _LoginState extends State<Login> {
   handleLoginSuccess(dynamic jsonString) {
 
     Globals.loggedInUser = User.fromJson(jsonDecode(jsonString));
-
+    DBManager.db.getBalance();
     //DBManager.db.addUsernameToSF(data.username);
     Navigator.push(
         context,

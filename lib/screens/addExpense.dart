@@ -15,14 +15,26 @@ class _AddExpenseState extends State<AddExpense> {
   TextEditingController noteController = TextEditingController();
   TextEditingController amountController = TextEditingController();
   TextEditingController dateController = TextEditingController();
-  handleAddExpenseSuccess() {
+  handleAddExpenseSuccess(String data ) {
+    print(data);
     Navigator.pop(context);
-    Toast.show(
-      "Expense Added",
-      context,
-      duration: Toast.LENGTH_LONG,
-      gravity: Toast.BOTTOM,
-    );
+    if (data != "") {
+      //showExceedDialog(context, data);
+      Toast.show(
+        data,
+        context,
+        duration: Toast.LENGTH_LONG,
+        gravity: Toast.CENTER,
+        backgroundColor: Colors.red[900],
+      );
+    } else {
+      Toast.show(
+        "Expense Added",
+        context,
+        duration: Toast.LENGTH_LONG,
+        gravity: Toast.BOTTOM,
+      );
+    }
   }
   int dueDateTimestamp;
   final dateFormat = DateFormat('dd-MM-yyyy');
@@ -201,7 +213,7 @@ class _AddExpenseState extends State<AddExpense> {
                                 addExpenseFuture
                                     .then((data) =>
                                 {
-                                  handleAddExpenseSuccess()
+                                  handleAddExpenseSuccess(data)
                                })
                                     .catchError((err) => {
                                   Toast.show(

@@ -5,12 +5,18 @@ interface IUser {
 	username: string;
 	password: string;
 	phoneNumber: string;
+	monthlyIncome: number;
+	dailyLimit: number;
+	saving: number;
 }
 
 const UserSchema = new mongoose.Schema({
 	username: String,
 	password: String,
-	phoneNumber: String
+	phoneNumber: String,
+	monthlyIncome: Number,
+	dailyLimit: Number,
+	saving: Number
 });
 
 const UserModel = mongoose.model('User', UserSchema);

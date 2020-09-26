@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(bodyparser.json());
 
-app.use(requestLoggerMiddleware);
+// app.use(requestLoggerMiddleware);
 RegisterRoutes(app);
 
 try {
