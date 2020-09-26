@@ -10,7 +10,7 @@
 - MongoDB
 
 - - - -
-### Demo tutorial for our appand presentation
+### Demo tutorial for our app and presentation and APK file
 https://drive.google.com/drive/folders/1EJzjHmqxtsif0LOk4ALzUC2cFB0maUTu?usp=sharing
 
 ### Screens
