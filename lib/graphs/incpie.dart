@@ -92,6 +92,8 @@ class _ExpensechartState extends State<Expensechart> {
     //List<DateExpense> apiData = List<DateExpense>.from(data).map((Map model) => DateExpense.fromJson(model)).toList();
     List<DateExpense> apiData =
     data.map((dJson) => DateExpense.fromJson(dJson)).toList();
+
+    apiData.sort((a, b) => a.date.compareTo(b.date));
     print(apiData);
     Random random = new Random();
     List<IncomeAmt1> modifiedData = apiData

@@ -90,6 +90,7 @@ class _ExpenselineState extends State<Expenseline> {
     List<DateExpense> apiData =
     data.map((dJson) => DateExpense.fromJson(dJson)).toList();
     print(apiData);
+    apiData.sort((a, b) => a.date.compareTo(b.date));
     Random random = new Random();
     List<IncomeAmt2> modifiedData = apiData
         .map((s) =>

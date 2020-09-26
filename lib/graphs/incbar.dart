@@ -86,6 +86,7 @@ class _ExpensegraphState extends State<Expensegraph> {
     //List<DateExpense> apiData = List<DateExpense>.from(data).map((Map model) => DateExpense.fromJson(model)).toList();
     List<DateExpense> apiData =
     data.map((dJson) => DateExpense.fromJson(dJson)).toList();
+    apiData.sort((a, b) => a.date.compareTo(b.date));
     print(apiData);
     List<IncomeAmt> modifiedData = apiData
         .map((s) => new IncomeAmt(
@@ -93,6 +94,8 @@ class _ExpensegraphState extends State<Expensegraph> {
         amt: s.total.round(),
         barColor: charts.ColorUtil.fromDartColor(Colors.blue[500])))
         .toList();
+
+
     print("\n\n\n\t\t\t");
     print(modifiedData);
     //l.add(12);
