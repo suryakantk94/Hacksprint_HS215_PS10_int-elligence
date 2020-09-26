@@ -60,8 +60,9 @@ class _ExpensechartState extends State<Expensechart> {
   @override
   void initState() {
     super.initState();
-    timer =
-    new Timer.periodic(new Duration(seconds: 2), (t) => getExpenseData());
+    //timer =
+    //new Timer.periodic(new Duration(seconds: 15), (t) => getExpenseData());
+    getExpenseData();
   }
 
   @override
@@ -166,8 +167,11 @@ class _ExpensechartState extends State<Expensechart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: data == null ? CircularProgressIndicator() : createChart(),
-    );
+        body: Center(
+          child: data == null
+              ? Container(child: CircularProgressIndicator())
+              : createChart(),
+        ));
   }
 
 }
